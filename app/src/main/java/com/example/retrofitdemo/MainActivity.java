@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
          MyService myWebService =   MyService.retrofit.create(MyService.class);
 
         Call<List<Post>> call = myWebService.getPost();
