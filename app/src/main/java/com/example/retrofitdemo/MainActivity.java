@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Retrofit Call
-        //callin
+        //calling
 
 
          MyService myWebService =   MyService.retrofit.create(MyService.class);
