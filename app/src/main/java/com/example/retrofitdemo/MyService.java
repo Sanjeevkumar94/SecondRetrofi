@@ -6,6 +6,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public interface MyService {
     String BASE_URL = "https://jsonplaceholder.typicode.com/";
@@ -22,5 +23,8 @@ public interface MyService {
 
     @GET("posts/1/comments")
     Call<List<Post>> getComments();
+
+    @GET("posts/{id}/comments")
+    Call<List<Post>> getCommentsByDynamicUrl(@Path("id") int userId);
 
 }
