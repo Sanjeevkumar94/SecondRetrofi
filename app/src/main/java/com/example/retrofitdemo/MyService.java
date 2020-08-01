@@ -1,5 +1,6 @@
 package com.example.retrofitdemo;
 
+import android.content.Intent;
 import android.icu.text.MessagePattern;
 
 import java.util.List;
@@ -39,10 +40,10 @@ public interface MyService {
     );
 
     @GET("comments")
-    //https://jsonplaceholder.typicode.com/comments?postId=1
+    //https://jsonplaceholder.typicode.com/comments?postId=1&id=2
     Call<List<Post>> getCommentsByMultipleQueries(
             @Query("postId") int myPostId,
-            @Query("id") int myId
+            @Query("id") Integer myId
     );
 
 

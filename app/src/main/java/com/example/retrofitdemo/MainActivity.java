@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getCommentsByMultipleQueries() {
-        Call<List<Post>> call = myWebService.getCommentsByMultipleQueries(1,2);
+        Call<List<Post>> call = myWebService.getCommentsByMultipleQueries(1,null);
         call.enqueue(new Callback<List<Post>>() {
             @Override
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
