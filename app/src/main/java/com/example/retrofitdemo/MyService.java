@@ -1,5 +1,7 @@
 package com.example.retrofitdemo;
 
+import android.icu.text.MessagePattern;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -7,6 +9,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface MyService {
     String BASE_URL = "https://jsonplaceholder.typicode.com/";
@@ -25,6 +28,12 @@ public interface MyService {
     Call<List<Post>> getComments();
 
     @GET("posts/{id}/comments")
-    Call<List<Post>> getCommentsByDynamicUrl(@Path("id") int userId);
+    Call<List<Post>> getCommentsByDynamicUrl(
+            @Path("id") int userId);
+
+    @GET("comments")
+    Call<List<Post>> getCommentsByQuery(
+            @Query("postId") int myPostId
+    );
 
 }
