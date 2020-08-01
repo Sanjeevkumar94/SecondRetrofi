@@ -13,6 +13,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
+import retrofit2.http.Url;
 
 public interface MyService {
     String BASE_URL = "https://jsonplaceholder.typicode.com/";
@@ -50,5 +51,8 @@ public interface MyService {
 
     @GET("comments")
     Call<List<Post>> getCommentsByQueryMap(@QueryMap Map<String,Integer> parameters);
+
+    @GET()
+    Call<List<Post>> getCommentsByUrl(@Url String url);
 
 }

@@ -26,8 +26,29 @@ public class MainActivity extends AppCompatActivity {
         //getRequestWithDynamicUrl();
         //getCommentsByQueryMethod();
        //getCommentsByMultipleQueries();
-        getCommentsByQuerieyMap();
+        //getCommentsByQuerieyMap();
+        getCommentsByUrl();
 
+    }
+
+    private void getCommentsByUrl() {
+        Call<List<Post>> call = myWebService.getCommentsByUrl("https://jsonplaceholder.typicode.com/posts/1/comments");
+        call.enqueue(new Callback<List<Post>>() {
+            @Override
+            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+                if(response.isSuccessful()){
+                    for( Post item : response.body() ){
+                        Log.d("data<<<<<<",""+item.getName());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Post>> call, Throwable t) {
+                Log.d("failure",t.getMessage());
+
+            }
+        });
     }
 
     private void getCommentsByQuerieyMap() {
