@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
                 if(response.isSuccessful()){
                     for( Post item : response.body() ){
-                        Log.d("data<<<<<<",""+item.getName());
+                        Log.d("data<<<<<<",""+item.getTitle());
                     }
                 }
             }
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
                 if(response.isSuccessful()){
                     for( Post item : response.body() ){
-                        Log.d("data<<<<<<",""+item.getName());
+                        Log.d("data<<<<<<",""+item.getTitle());
                     }
                 }
             }
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
                 if(response.isSuccessful()){
                     for( Post item : response.body() ){
-                        Log.d("data<<<<<<",""+item.getName());
+                        Log.d("data<<<<<<",""+item.getTitle());
                     }
                 }
             }
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
                 if(response.isSuccessful()){
                     for( Post item : response.body() ){
-                        Log.d("data<<<<<<",""+item.getName());
+                        Log.d("data<<<<<<",""+item.getTitle());
                     }
                 }
             }
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
                 if(response.isSuccessful()){
                     for( Post item : response.body() ){
-                        Log.d("data<<<<<<",""+item.getName());
+                        Log.d("data<<<<<<",""+item.getTitle());
                     }
                 }
             }
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
                 if(response.isSuccessful()){
                     for( Post item : response.body() ){
-                        Log.d("data<<<<<<",""+item.getName());
+                        Log.d("data<<<<<<",""+item.getTitle());
                     }
                 }
             }
