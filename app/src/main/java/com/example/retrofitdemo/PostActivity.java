@@ -17,10 +17,30 @@ public class PostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
          myService = MyService.retrofit.create(MyService.class);
-        createPost();
+        // createPostWithBody();
+        createPostWithField();
     }
 
-    private void createPost() {
+    private void createPostWithField() {
+        Call<Post> call =  myService.createPostWithField(1,"my title");
+        call.enqueue(new Callback<Post>() {
+            @Override
+            public void onResponse(Call<Post> call, Response<Post> response) {
+                if(response.isSuccessful()){
+                    Log.d("response<<<",""+response.body().getTitle()+" "+
+                            response.body().getText()+ " "+response.body().getId());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Post> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    private void createPostWithBody() {
     Post post = new Post(1,"my title", "my text");
      Call<Post> call = myService.createPostWithBody(post);
      call.enqueue(new Callback<Post>() {
