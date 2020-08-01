@@ -8,7 +8,9 @@ import retrofit2.Response;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,12 +25,37 @@ public class MainActivity extends AppCompatActivity {
         //getRequestWithoutDynamicUrl();
         //getRequestWithDynamicUrl();
         //getCommentsByQueryMethod();
-        getCommentsByMultipleQueries();
+       //getCommentsByMultipleQueries();
+        getCommentsByQuerieyMap();
 
     }
 
+    private void getCommentsByQuerieyMap() {
+        Map<String,Integer> parms = new HashMap<>();
+        parms.put("postId",1);
+        parms.put("id",1);
+
+        Call<List<Post>> call = myWebService.getCommentsByQueryMap(parms);
+        call.enqueue(new Callback<List<Post>>() {
+            @Override
+            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+                if(response.isSuccessful()){
+                    for( Post item : response.body() ){
+                        Log.d("data<<<<<<",""+item.getName());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Post>> call, Throwable t) {
+                Log.d("failure",t.getMessage());
+
+            }
+        });
+    }
+
     private void getCommentsByMultipleQueries() {
-        Call<List<Post>> call = myWebService.getCommentsByMultipleQueries(1,null);
+        Call<List<Post>> call = myWebService.getCommentsByMultipleQueries(1,1);
         call.enqueue(new Callback<List<Post>>() {
             @Override
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {

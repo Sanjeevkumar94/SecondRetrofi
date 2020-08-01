@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.icu.text.MessagePattern;
 
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -11,6 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 public interface MyService {
     String BASE_URL = "https://jsonplaceholder.typicode.com/";
@@ -46,5 +48,7 @@ public interface MyService {
             @Query("id") Integer myId
     );
 
+    @GET("comments")
+    Call<List<Post>> getCommentsByQueryMap(@QueryMap Map<String,Integer> parameters);
 
 }
