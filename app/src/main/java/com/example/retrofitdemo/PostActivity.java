@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,7 +21,31 @@ public class PostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
          myService = MyService.retrofit.create(MyService.class);
         // createPostWithBody();
-        createPostWithField();
+       // createPostWithField();
+        createPostWithFieldMap();
+    }
+
+    private void createPostWithFieldMap() {
+
+        Map<String,String> createPost = new HashMap<>();
+        createPost.put("userId","1");
+        createPost.put("title","my title");
+        Call<Post> call = myService.createPostWithFieldMap(createPost);
+        call.enqueue(new Callback<Post>() {
+            @Override
+            public void onResponse(Call<Post> call, Response<Post> response) {
+                if(response.isSuccessful()){
+                    Log.d("response<<<",""+response.body().getTitle()+" "+
+                            response.body().getText()+ " "+response.body().getId());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Post> call, Throwable t) {
+
+            }
+        });
+
     }
 
     private void createPostWithField() {
