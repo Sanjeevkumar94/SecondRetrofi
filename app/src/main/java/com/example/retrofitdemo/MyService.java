@@ -28,12 +28,22 @@ public interface MyService {
     Call<List<Post>> getComments();
 
     @GET("posts/{id}/comments")
+    //https://jsonplaceholder.typicode.com/posts/1/comments
     Call<List<Post>> getCommentsByDynamicUrl(
             @Path("id") int userId);
 
     @GET("comments")
+    //https://jsonplaceholder.typicode.com/comments?postId=1
     Call<List<Post>> getCommentsByQuery(
             @Query("postId") int myPostId
     );
+
+    @GET("comments")
+    //https://jsonplaceholder.typicode.com/comments?postId=1
+    Call<List<Post>> getCommentsByMultipleQueries(
+            @Query("postId") int myPostId,
+            @Query("id") int myId
+    );
+
 
 }
