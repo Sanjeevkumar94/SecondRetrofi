@@ -27,7 +27,30 @@ public class MainActivity extends AppCompatActivity {
         //getCommentsByQueryMethod();
        //getCommentsByMultipleQueries();
         //getCommentsByQuerieyMap();
-        getCommentsByUrl();
+        //getCommentsByUrl();
+
+        getCommentsByMultipleQuerieswithArrays();
+
+    }
+
+    private void getCommentsByMultipleQuerieswithArrays() {
+        Call<List<Post>> call = myWebService.getCommentsByMultipleQuerieswithArrays(new Integer[]{1,2});
+        call.enqueue(new Callback<List<Post>>() {
+            @Override
+            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+                if(response.isSuccessful()){
+                    for( Post item : response.body() ){
+                        Log.d("data<<<<<<",""+item.getName());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Post>> call, Throwable t) {
+                Log.d("failure",t.getMessage());
+
+            }
+        });
 
     }
 

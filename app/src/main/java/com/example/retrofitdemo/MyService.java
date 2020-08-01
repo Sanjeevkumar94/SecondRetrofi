@@ -55,4 +55,10 @@ public interface MyService {
     @GET()
     Call<List<Post>> getCommentsByUrl(@Url String url);
 
+    @GET("comments")
+        //https://jsonplaceholder.typicode.com/comments?postId=1&id=2
+    Call<List<Post>> getCommentsByMultipleQuerieswithArrays(
+            @Query("postId") Integer[] ids
+    );
+
 }
