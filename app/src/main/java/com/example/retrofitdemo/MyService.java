@@ -19,4 +19,8 @@ public interface MyService {
 
     @GET(FEED)
     Call<List<Post>> getPost();
+
+    @GET("posts/1/comments")
+    Call<List<Post>> getComments();
+
 }

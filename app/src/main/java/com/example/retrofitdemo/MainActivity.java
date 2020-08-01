@@ -12,17 +12,40 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    MyService myWebService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        myWebService =   MyService.retrofit.create(MyService.class);
+       //simpleGetRequest();
+        getRequestWithoutDynamicUrl();
 
-        //Retrofit Call
-        //calling
+       
+    }
 
+    private void getRequestWithoutDynamicUrl() {
 
-         MyService myWebService =   MyService.retrofit.create(MyService.class);
+        Call<List<Post>> call = myWebService.getComments();
+        call.enqueue(new Callback<List<Post>>() {
+            @Override
+            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+                if(response.isSuccessful()){
+                    for( Post item : response.body() ){
+                        Log.d("data<<<<<<",""+item.getTitle());
+                    }
+                }
+            }
 
+            @Override
+            public void onFailure(Call<List<Post>> call, Throwable t) {
+            Log.d("failure",t.getMessage());
+            }
+        });
+    }
+
+    private void simpleGetRequest() {
         Call<List<Post>> call = myWebService.getPost();
         call.enqueue(new Callback<List<Post>>() {
             @Override
@@ -40,4 +63,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+  
 }
