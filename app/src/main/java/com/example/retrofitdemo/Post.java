@@ -19,6 +19,9 @@ public class Post {
     public void setUserId(int userId) {
         this.userId = userId;
     }
+    public int getUserId() {
+        return userId;
+    }
 
     public int getId() {
         return id;

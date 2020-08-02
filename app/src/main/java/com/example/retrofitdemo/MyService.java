@@ -15,6 +15,7 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
@@ -80,5 +81,8 @@ public interface MyService {
     @POST("posts")
      Call<Post> createPostWithFieldMap(
              @FieldMap Map<String,String> createPost);
+
+    @PUT("posts/{id}")
+     Call<Post> putRequest( @Path("id") int id, @Body Post body);
 
 }
