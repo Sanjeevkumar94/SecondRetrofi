@@ -20,8 +20,9 @@ public class PutPatchDeleteActivity extends AppCompatActivity {
         patchRequest();
     }
 
+    // when we sent patch request with null value it will not update those value in data base.
     private void patchRequest() {
-        myService.patchRequest(1,new Post(2,"my title","my text")).enqueue(
+        myService.patchRequest(1,new Post(2,"my title",null)).enqueue(
                 new Callback<Post>() {
                     @Override
                     public void onResponse(Call<Post> call, Response<Post> response) {
