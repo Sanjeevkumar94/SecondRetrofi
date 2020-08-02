@@ -14,6 +14,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -84,5 +85,11 @@ public interface MyService {
 
     @PUT("posts/{id}")
      Call<Post> putRequest( @Path("id") int id, @Body Post body);
+
+    @PATCH("posts/{id}")
+    Call<Post> patchRequest(
+            @Path("id") int id,
+            @Body Post body
+    );
 
 }

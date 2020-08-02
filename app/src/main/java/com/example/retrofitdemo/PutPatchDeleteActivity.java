@@ -16,7 +16,29 @@ public class PutPatchDeleteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myService = MyService.retrofit.create(MyService.class);
-        putRequest();
+        //putRequest();
+        patchRequest();
+    }
+
+    private void patchRequest() {
+        myService.patchRequest(1,new Post(2,"my title","my text")).enqueue(
+                new Callback<Post>() {
+                    @Override
+                    public void onResponse(Call<Post> call, Response<Post> response) {
+                        if(response.isSuccessful()){
+                            Log.d("response<<<<<"," user id "+response.body().getUserId() +
+                                    " , title "+ response.body().getTitle() + " , text " +response.body()
+                                    .getText() + " , id " + response.body().getId());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Post> call, Throwable t) {
+
+                    }
+                }
+        );
+
     }
 
     //when we use put request when send null value it store null value to data base.
