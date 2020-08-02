@@ -3,6 +3,8 @@ package com.example.retrofitdemo;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.retrofitdemo.Networking.NetworkingHelper;
+
 import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -15,10 +17,10 @@ public class PutPatchDeleteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        myService = MyService.retrofit.create(MyService.class);
-        //putRequest();
+        myService = NetworkingHelper.getRetrofit().create(MyService.class);
+        putRequest();
        // patchRequest();
-        deleteRequest();
+        //deleteRequest();
     }
 
     private void deleteRequest() {

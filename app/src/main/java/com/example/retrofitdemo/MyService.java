@@ -57,32 +57,50 @@ public interface MyService {
             @Query("id") Integer myId
     );
 
+    //https://jsonplaceholder.typicode.com/comments?postId=1&id=2
     @GET("comments")
     Call<List<Post>> getCommentsByQueryMap(@QueryMap Map<String,Integer> parameters);
 
+    //https://jsonplaceholder.typicode.com/posts/1/comments
     @GET()
     Call<List<Post>> getCommentsByUrl(@Url String url);
 
+    //https://jsonplaceholder.typicode.com/comments?postId=1&postId=2
     @GET("comments")
-        //https://jsonplaceholder.typicode.com/comments?postId=1&id=2
     Call<List<Post>> getCommentsByMultipleQuerieswithArrays(
             @Query("postId") Integer[] ids
     );
 
 
+   /* POST https://jsonplaceholder.typicode.com/posts
+            2020-08-02 13:29:11.886 1260-1324/com.example.retrofitdemo I/okhttp.OkHttpClient: Content-Type: application/json; charset=UTF-8
+            2020-08-02 13:29:11.886 1260-1324/com.example.retrofitdemo I/okhttp.OkHttpClient: Content-Length: 55
+            2020-08-02 13:29:11.888 1260-1324/com.example.retrofitdemo I/okhttp.OkHttpClient: {"id":0,"body":"my text","title":"my title","userId":1}
+            2020-08-02 13:29:11.888 1260-1324/com.example.retrofitdemo I/okhttp.OkHttpClient: --> END POST (55-byte body)*/
     @POST("posts")
     Call<Post> createPostWithBody(@Body Post post);
 
+
+
+   /* POST https://jsonplaceholder.typicode.com/posts
+            2020-08-02 13:32:25.669 1980-2026/com.example.retrofitdemo I/okhttp.OkHttpClient: Content-Type: application/x-www-form-urlencoded
+            2020-08-02 13:32:25.670 1980-2026/com.example.retrofitdemo I/okhttp.OkHttpClient: Content-Length: 40
+            2020-08-02 13:32:25.671 1980-2026/com.example.retrofitdemo I/okhttp.OkHttpClient: userId=1&title=my%20title&Body=my%20body
+            2020-08-02 13:32:25.671 1980-2026/com.example.retrofitdemo I/okhttp.OkHttpClient: --> END POST (40-byte body)*/
     @FormUrlEncoded
     @POST("posts")
     Call<Post> createPostWithField(
             @Field("userId") int userId,
-            @Field("title") String title
+            @Field("title") String title,
+            @Field("Body") String body
     );
+
+    /*title=my%20title&userId=1*/
     @FormUrlEncoded
     @POST("posts")
      Call<Post> createPostWithFieldMap(
              @FieldMap Map<String,String> createPost);
+
 
     @PUT("posts/{id}")
      Call<Post> putRequest( @Path("id") int id, @Body Post body);

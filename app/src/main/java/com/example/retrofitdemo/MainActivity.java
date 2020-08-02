@@ -8,6 +8,8 @@ import retrofit2.Response;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.retrofitdemo.Networking.NetworkingHelper;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,16 +22,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        myWebService =   MyService.retrofit.create(MyService.class);
-       //simpleGetRequest();
-        //getRequestWithoutDynamicUrl();
-        //getRequestWithDynamicUrl();
-        //getCommentsByQueryMethod();
-       //getCommentsByMultipleQueries();
-        //getCommentsByQuerieyMap();
-        //getCommentsByUrl();
+        //myWebService =   MyService.retrofit.create(MyService.class);
 
-        getCommentsByMultipleQuerieswithArrays();
+        myWebService = NetworkingHelper.getRetrofit().create(MyService.class);
+
+        // simpleGetRequest();
+        //getRequestWithoutDynamicUrl();
+       // getRequestWithDynamicUrl();
+       // getCommentsByQueryMethod();
+      // getCommentsByMultipleQueries();
+        //getCommentsByQuerieyMap();
+       // getCommentsByUrl();
+        //getCommentsByMultipleQuerieswithArrays();
 
     }
 

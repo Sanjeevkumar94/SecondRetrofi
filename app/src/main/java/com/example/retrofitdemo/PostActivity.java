@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.retrofitdemo.Networking.NetworkingHelper;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +21,7 @@ public class PostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-         myService = MyService.retrofit.create(MyService.class);
+         myService = NetworkingHelper.getRetrofit().create(MyService.class);
         // createPostWithBody();
        // createPostWithField();
         createPostWithFieldMap();
@@ -49,7 +51,7 @@ public class PostActivity extends AppCompatActivity {
     }
 
     private void createPostWithField() {
-        Call<Post> call =  myService.createPostWithField(1,"my title");
+        Call<Post> call =  myService.createPostWithField(1,"my title","my body");
         call.enqueue(new Callback<Post>() {
             @Override
             public void onResponse(Call<Post> call, Response<Post> response) {
