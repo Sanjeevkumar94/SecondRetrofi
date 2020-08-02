@@ -19,8 +19,9 @@ public class PutPatchDeleteActivity extends AppCompatActivity {
         putRequest();
     }
 
+    //when we use put request when send null value it store null value to data base.
     private void putRequest() {
-        myService.putRequest(1,new Post(2,"my title","my text")).enqueue(
+        myService.putRequest(1,new Post(2,"my title",null)).enqueue(
                 new Callback<Post>() {
                     @Override
                     public void onResponse(Call<Post> call, Response<Post> response) {
