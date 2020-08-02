@@ -17,7 +17,24 @@ public class PutPatchDeleteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         myService = MyService.retrofit.create(MyService.class);
         //putRequest();
-        patchRequest();
+       // patchRequest();
+        deleteRequest();
+    }
+
+    private void deleteRequest() {
+        myService.deleteRequest(1).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccessful()){
+                    Log.d("Delete<<",""+response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
     }
 
     // when we sent patch request with null value it will not update those value in data base.

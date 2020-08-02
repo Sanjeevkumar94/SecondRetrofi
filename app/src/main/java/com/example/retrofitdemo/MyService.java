@@ -10,6 +10,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
@@ -91,5 +92,8 @@ public interface MyService {
             @Path("id") int id,
             @Body Post body
     );
+
+    @DELETE("posts/{id}")
+    Call<Void> deleteRequest( @Path("id") int id );
 
 }
