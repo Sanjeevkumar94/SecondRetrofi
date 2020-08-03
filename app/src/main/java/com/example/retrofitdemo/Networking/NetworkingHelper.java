@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
+import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -29,8 +30,10 @@ public class NetworkingHelper {
                                         @Override
                                         public Response intercept(@NotNull Chain chain) throws IOException {
                                             Request originalRequest = chain.request();
+
                                             Request request = originalRequest.newBuilder()
-                                                    .header("Intercepter-header","xyx")
+                                                    .addHeader("Interceptor1","jskhkl")
+                                                    .addHeader("Interceptor2","j9897")
                                                     .build();
                                             return chain.proceed(request);
                                         }
