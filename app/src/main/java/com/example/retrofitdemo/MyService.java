@@ -33,7 +33,7 @@ public interface MyService {
 
     @Headers({"static-header:123","static-header2:1233"})
     @GET("posts/1/comments")
-    Call<List<Post>> getComments();
+    Call<List<Post>> getComments( @Header("dynamic-header") String header);
 
     @GET("posts/{id}/comments")
     //https://jsonplaceholder.typicode.com/posts/1/comments

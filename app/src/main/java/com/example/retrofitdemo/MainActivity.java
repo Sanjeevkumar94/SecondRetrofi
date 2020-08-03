@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getRequestWithoutDynamicUrl() {
 
-        Call<List<Post>> call = myWebService.getComments();
+        Call<List<Post>> call = myWebService.getComments("abc");
         call.enqueue(new Callback<List<Post>>() {
             @Override
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
