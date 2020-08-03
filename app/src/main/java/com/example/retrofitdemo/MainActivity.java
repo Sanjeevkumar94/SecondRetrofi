@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         myWebService = NetworkingHelper.getRetrofit().create(MyService.class);
 
         // simpleGetRequest();
-        //getRequestWithoutDynamicUrl();
+        getRequestWithoutDynamicUrl();
        // getRequestWithDynamicUrl();
        // getCommentsByQueryMethod();
       // getCommentsByMultipleQueries();

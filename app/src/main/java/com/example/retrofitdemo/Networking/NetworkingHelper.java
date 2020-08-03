@@ -16,10 +16,9 @@ public class NetworkingHelper {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.level(HttpLoggingInterceptor.Level.BODY);
 
-
-
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                                     .addInterceptor(httpLoggingInterceptor)
+
                                     .build();
 
         Gson gson = new GsonBuilder().serializeNulls().create();

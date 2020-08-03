@@ -15,6 +15,8 @@ import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -24,18 +26,12 @@ import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
 
 public interface MyService {
-    String BASE_URL = "https://jsonplaceholder.typicode.com/";
     String FEED = "posts";
-
-    Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(BASE_URL)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-
 
     @GET(FEED)
     Call<List<Post>> getPost();
 
+    @Headers({"static-header:123","static-header2:1233"})
     @GET("posts/1/comments")
     Call<List<Post>> getComments();
 
