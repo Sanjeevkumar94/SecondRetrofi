@@ -3,7 +3,14 @@ package com.example.retrofitdemo.Networking;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
+
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -17,8 +24,18 @@ public class NetworkingHelper {
         httpLoggingInterceptor.level(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                                    .addInterceptor(new Interceptor() {
+                                        @NotNull
+                                        @Override
+                                        public Response intercept(@NotNull Chain chain) throws IOException {
+                                            Request originalRequest = chain.request();
+                                            Request request = originalRequest.newBuilder()
+                                                    .header("Intercepter-header","xyx")
+                                                    .build();
+                                            return chain.proceed(request);
+                                        }
+                                    })
                                     .addInterceptor(httpLoggingInterceptor)
-
                                     .build();
 
         Gson gson = new GsonBuilder().serializeNulls().create();
