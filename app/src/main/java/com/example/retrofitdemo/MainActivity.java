@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
         myWebService = NetworkingHelper.getRetrofit().create(MyService.class);
 
-        // simpleGetRequest();
-        getRequestWithoutDynamicUrl();
+        simpleGetRequest();
+       // getRequestWithoutDynamicUrl();
        // getRequestWithDynamicUrl();
        // getCommentsByQueryMethod();
       // getCommentsByMultipleQueries();
@@ -185,7 +185,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void simpleGetRequest() {
-        Call<List<Post>> call = myWebService.getPost();
+
+        Map<String,String> headers = new HashMap<>();
+        headers.put("Key","56dvjksbfvjfds8dgfjdsbf");
+        headers.put("token","1234567890");
+        Call<List<Post>> call = myWebService.getPost(headers);
         call.enqueue(new Callback<List<Post>>() {
             @Override
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {

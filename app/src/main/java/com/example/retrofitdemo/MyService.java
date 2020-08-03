@@ -16,6 +16,7 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.HeaderMap;
 import retrofit2.http.Headers;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
@@ -29,7 +30,7 @@ public interface MyService {
     String FEED = "posts";
 
     @GET(FEED)
-    Call<List<Post>> getPost();
+    Call<List<Post>> getPost(@HeaderMap Map<String,String> headers);
 
     @Headers({"static-header:123","static-header2:1233"})
     @GET("posts/1/comments")
